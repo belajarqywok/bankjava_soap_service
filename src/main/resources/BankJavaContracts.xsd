@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.bankjava.com/contracts"
+        xmlns:tns="http://www.bankjava.com/contracts"
+        elementFormDefault="qualified">
+
+
+        <xsd:element name="CustomerRequest">
+                <xsd:complexType>
+                        <xsd:sequence>
+                                <xsd:element name="customerName" type="xsd:string" />
+                                <xsd:element name="age" type="xsd:int" />
+                                <xsd:element name="yearlyIncome" type="xsd:long" />
+                                <xsd:element name="cibilScore" type="xsd:int" />
+                                <xsd:element name="employmentMode" type="xsd:string" />
+                        </xsd:sequence>
+                </xsd:complexType>
+        </xsd:element>
+
+        <xsd:element name="Acknowledgement">
+                <xsd:complexType>
+                        <xsd:sequence>
+                                <xsd:element name="isEligible" type="xsd:boolean" />
+                                <xsd:element name="approvedAmount" type="xsd:long" />
+                                <xsd:element name="CriteriaMismatch" type="xsd:string"
+                                        maxOccurs="unbounded" />
+                        </xsd:sequence>
+                </xsd:complexType>
+        </xsd:element>
+
+
+
+        <!-- Login Contract -->
+        <!-- Login Requests -->
+        <xsd:element name="LoginRequest">
+                <xsd:complexType>
+                        <xsd:sequence>
+                                <xsd:element name="email" type="xsd:string" />
+                                <xsd:element name="password" type="xsd:string" />
+                        </xsd:sequence>
+                </xsd:complexType>
+        </xsd:element>
+
+        <!-- Login Response -->
+        <xsd:element name="LoginResponse">
+                <xsd:complexType>
+                        <xsd:sequence>
+                                <xsd:element name="message" type="xsd:string" />
+                                <xsd:element name="accessToken" type="xsd:string" />
+                                <xsd:element name="refreshToken" type="xsd:string" />
+                        </xsd:sequence>
+                </xsd:complexType>
+        </xsd:element>
+        <!-- Login Contract END -->
+
+
+
+        <!-- Register Contract -->
+        <!-- Register Requests -->
+        <xsd:element name="RegisterRequest">
+                <xsd:complexType>
+                        <xsd:sequence>
+                                <xsd:element name="fullname" type="xsd:string" />
+                                <xsd:element name="nickname" type="xsd:string" />
+                                <xsd:element name="birthDate" type="xsd:string" />
+                                <xsd:element name="email" type="xsd:string" />
+                                <xsd:element name="phoneNumber" type="xsd:string" />
+                                <xsd:element name="password" type="xsd:string" />
+                        </xsd:sequence>
+                </xsd:complexType>
+        </xsd:element>
+
+        <!-- Register Response -->
+        <xsd:element name="RegisterResponse">
+                <xsd:complexType>
+                        <xsd:sequence>
+                                <xsd:element name="message" type="xsd:string" />
+                        </xsd:sequence>
+                </xsd:complexType>
+        </xsd:element>
+        <!-- Register Contract END -->
+
+</xsd:schema>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="bankjava" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" resourceRoot="" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="BankJavaSoap11" type="wsdl" bindingName="{http://www.bankjava.com/contracts}BankJavaSoap11" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/ws/bankjava.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/ws/bankjava.wsdl"><con:part><con:url>http://localhost:8080/ws/bankjava.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://www.bankjava.com/contracts" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://www.bankjava.com/contracts" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.bankjava.com/contracts">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://www.bankjava.com/contracts" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:element name="CustomerRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="customerName" type="xsd:string"/>
+            <xsd:element name="age" type="xsd:int"/>
+            <xsd:element name="yearlyIncome" type="xsd:long"/>
+            <xsd:element name="cibilScore" type="xsd:int"/>
+            <xsd:element name="employmentMode" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Acknowledgement">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="isEligible" type="xsd:boolean"/>
+            <xsd:element name="approvedAmount" type="xsd:long"/>
+            <xsd:element maxOccurs="unbounded" name="CriteriaMismatch" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <!--Login Contract-->
+      <!--Login Requests-->
+      <xsd:element name="LoginRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="email" type="xsd:string"/>
+            <xsd:element name="password" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <!--Login Response-->
+      <xsd:element name="LoginResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="message" type="xsd:string"/>
+            <xsd:element name="accessToken" type="xsd:string"/>
+            <xsd:element name="refreshToken" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <!--Login Contract END-->
+      <!--Register Contract-->
+      <!--Register Requests-->
+      <xsd:element name="RegisterRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="fullname" type="xsd:string"/>
+            <xsd:element name="birthDate" type="xsd:string"/>
+            <xsd:element name="email" type="xsd:string"/>
+            <xsd:element name="password" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <!--Register Response-->
+      <xsd:element name="RegisterResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="message" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <!--Register Contract END-->
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="LoginRequest">
+    <wsdl:part element="tns:LoginRequest" name="LoginRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CustomerRequest">
+    <wsdl:part element="tns:CustomerRequest" name="CustomerRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="RegisterRequest">
+    <wsdl:part element="tns:RegisterRequest" name="RegisterRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="RegisterResponse">
+    <wsdl:part element="tns:RegisterResponse" name="RegisterResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="LoginResponse">
+    <wsdl:part element="tns:LoginResponse" name="LoginResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="BankJava">
+    <wsdl:operation name="Login">
+      <wsdl:input message="tns:LoginRequest" name="LoginRequest"></wsdl:input>
+      <wsdl:output message="tns:LoginResponse" name="LoginResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Customer">
+      <wsdl:input message="tns:CustomerRequest" name="CustomerRequest"></wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="Register">
+      <wsdl:input message="tns:RegisterRequest" name="RegisterRequest"></wsdl:input>
+      <wsdl:output message="tns:RegisterResponse" name="RegisterResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BankJavaSoap11" type="tns:BankJava">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="LoginRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="LoginResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Customer">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="CustomerRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="Register">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="RegisterRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="RegisterResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BankJavaService">
+    <wsdl:port binding="tns:BankJavaSoap11" name="BankJavaSoap11">
+      <soap:address location="http://localhost:8080/ws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/ws</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="Customer" bindingOperationName="Customer" type="One-Way" inputName="CustomerRequest" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://www.bankjava.com/contracts">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <con:CustomerRequest>
+         <con:customerName>?</con:customerName>
+         <con:age>?</con:age>
+         <con:yearlyIncome>?</con:yearlyIncome>
+         <con:cibilScore>?</con:cibilScore>
+         <con:employmentMode>?</con:employmentMode>
+      </con:CustomerRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.bankjava.com/contracts/BankJava/CustomerRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://www.bankjava.com/contracts">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <con:CustomerRequest>
+         <con:customerName>?</con:customerName>
+         <con:age>?</con:age>
+         <con:yearlyIncome>?</con:yearlyIncome>
+         <con:cibilScore>?</con:cibilScore>
+         <con:employmentMode>?</con:employmentMode>
+      </con:CustomerRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.bankjava.com/contracts/BankJava/CustomerRequest"/></con:call><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://www.bankjava.com/contracts">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <con:CustomerRequest>
+         <con:customerName>?</con:customerName>
+         <con:age>?</con:age>
+         <con:yearlyIncome>?</con:yearlyIncome>
+         <con:cibilScore>?</con:cibilScore>
+         <con:employmentMode>?</con:employmentMode>
+      </con:CustomerRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.bankjava.com/contracts/BankJava/CustomerRequest"/></con:call><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://www.bankjava.com/contracts">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <con:CustomerRequest>
+         <con:customerName>?</con:customerName>
+         <con:age>?</con:age>
+         <con:yearlyIncome>?</con:yearlyIncome>
+         <con:cibilScore>?</con:cibilScore>
+         <con:employmentMode>?</con:employmentMode>
+      </con:CustomerRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.bankjava.com/contracts/BankJava/CustomerRequest"/></con:call></con:operation><con:operation isOneWay="false" action="" name="Login" bindingOperationName="Login" type="Request-Response" outputName="LoginResponse" inputName="LoginRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="LoginExampleSuccess"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://www.bankjava.com/contracts">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <con:LoginRequest>
+         <con:email>admin@admin.com</con:email>
+         <con:password>admin</con:password>
+      </con:LoginRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.bankjava.com/contracts/BankJava/LoginRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="Register" bindingOperationName="Register" type="Request-Response" outputName="RegisterResponse" inputName="RegisterRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="RegisterExampleSuccess"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://www.bankjava.com/contracts">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <con:RegisterRequest>
+         <con:fullname>Al-Fariqy Raihan Azhwar</con:fullname>
+         <con:birthDate>09-05-2003</con:birthDate>
+         <con:email>alfariqyraihan@gmail.com</con:email>
+         <con:password>ajsiasudaijsdao</con:password>
+      </con:RegisterRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.bankjava.com/contracts/BankJava/RegisterRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

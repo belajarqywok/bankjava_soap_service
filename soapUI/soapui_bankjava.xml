@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+   <SOAP-ENV:Header/>
+   <SOAP-ENV:Body>
+      <ns2:LoginResponse xmlns:ns2="http://www.bankjava.com/api/bankjava">
+         <ns2:message>berhasil login</ns2:message>
+      </ns2:LoginResponse>
+   </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
